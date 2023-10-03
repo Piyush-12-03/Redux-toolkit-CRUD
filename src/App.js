@@ -6,6 +6,7 @@ import AddAuthor from './components/AddAuthor';
 import AllAuthor from './components/AllAuthors';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import AddBook from './components/AddBook';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
               <Route path="home" element={<MainComponent/>}></Route>
               <Route path="addAuthor" element={<AddAuthor/>}></Route>
               <Route path="allAuthors" element={<AllAuthor/>}></Route>
+              <Route path="addBook/:authorId" element={<AddBook/>}></Route>
             </Routes>
           </BrowserRouter>
           </Provider>

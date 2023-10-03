@@ -25,63 +25,66 @@
   font-size: 16px;
 }
 
-.btn-bd-primary {
-  --bs-btn-font-weight: 600;
-  --bs-btn-color: var(--bs-white);
+.btn-delete-update{
+  background-color: #72af94;
+  border-radius: 5rem;
 }
 
-
-/* Style for the container */
+.btn-delete-update:hover{
+  background-color: #8accae;
+}
+/* //addAuthor Style */
 .container {
-  max-width: 20px;
-  margin: 0 auto;
-  margin-top: 60px;
-  padding: 70px;
-  padding-top: 30px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-  background-color: #d1e7dd;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 50vh; /* This centers the container vertically */
+  
 }
 
-/* Style for headings */
-h1, h2 {
-  margin-top: 5px;
+.allAuthor {
+  font-size: 35px;
+  color: #8accae;
+  margin-bottom: 10px;
+  font-family: Josefin Slab;
   text-align: center;
 }
 
-/* Style for labels */
 label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
+  font-size: 18px;
+  color: #333;
 }
 
-/* Style for text inputs */
-input[type="text"] {
-  width: 50%;
+input {
+  width: 100%;
   padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 3px;
-  box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
+  border: 1px solid #8accae;
+  border-radius: 5px;
+  font-size: 16px;
 }
 
-/* Style for buttons */
 button {
+  background-color: #8accae;
+  color: white;
+  font-size: 18px;
   padding: 10px 20px;
-  background-color: #007bff;
-  color: #fff;
   border: none;
-  border-radius: 3px;
+  border-radius: 5px;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color 0.3s ease-in-out;
 }
 
 button:hover {
-  background-color: #0056b3;
+  background-color: #5e8f68; /* Change the color on hover */
 }
 
-.allAuthor{
-  font-family: Josefin Slab;
-  font-size: 35px;
+.btn-bd-primary {
+  background-color: #8accae;
+  color: white;
+  text-decoration: none;
+  padding: 5px 10px;
+  padding-top: 1px;
+  border-radius: 20px;
 }

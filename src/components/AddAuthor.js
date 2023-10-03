@@ -14,15 +14,11 @@ const AddAuthor = () => {
   const handleAddAuthor = () => {
     if (name) {
       axios
-        .post('http://localhost:8080/author/', name, {
-          headers: {
-            'Content-Type': 'text/plain',
-          },
-        })
+        .post('http://localhost:8080/author/', name, {headers: {'Content-Type': 'text/plain',}})
         .then((response) => {
           console.log('Author added:', response.data);
           setAuthors([...authors, response.data]);
-          dispatch(fetchAuthors());
+          // dispatch(fetchAuthors());
           navigate('/allAuthors');
         })
         .catch((error) => {
@@ -48,7 +44,7 @@ const AddAuthor = () => {
           />
         </div>
         <div>
-          <button onClick={handleAddAuthor} className="btn btn-secondary">
+          <button onClick={handleAddAuthor} className="btn-delete-update" >
             Add Author
           </button>
         </div>
