@@ -18,7 +18,7 @@ const AddAuthor = () => {
         .then((response) => {
           console.log('Author added:', response.data);
           setAuthors([...authors, response.data]);
-          // dispatch(fetchAuthors());
+          dispatch(fetchAuthors());
           navigate('/allAuthors');
         })
         .catch((error) => {

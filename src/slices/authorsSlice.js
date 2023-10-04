@@ -4,7 +4,7 @@ import axios from 'axios';
 const initialState = {
   authors: [],
   status: 'idle',
-  error: null,
+  error: null, 
 };
 
 export const fetchAuthors = () => {
@@ -19,31 +19,42 @@ export const fetchAuthors = () => {
   };
 };
 
-export const addBookToAuthor = ({ bookName, authorId }) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(`http://localhost:8080/author/${authorId}/books`, {
-        name: bookName,
-      });
-      // Assuming the response contains the updated author data, you can dispatch an action to update the state.
-      dispatch(addBookToAuthorFulfilled(response.data));
-    } catch (error) {
-      // Handle error here if needed.
-    }
-  };
-};
-
 export const deleteAuthorById = (authorId) => {
   return async (dispatch) => {
     try {
       await axios.delete(`http://localhost:8080/author/${authorId}`);
-      // Dispatch an action to remove the deleted author from the state.
       dispatch(deleteAuthorByIdFulfilled(authorId));
     } catch (error) {
-      // Handle error here if needed.
     }
   };
 };
+
+export const updateAuthorById = (authorId, updatedAuthorName) => {
+  return async (dispatch) => {
+    try {
+      console.log(authorId, updatedAuthorName);
+      const response = await axios.put(`http://localhost:8080/author/${authorId}`, updatedAuthorName);
+      dispatch(updateAuthorByIdFulfilled(response.data));
+    } catch (error) {
+      console.log(error.message);
+    } 
+  };
+};
+
+export const addBookToAuthor = ({ bookName, authorId }) => {
+  return async (dispatch) => {
+    try {
+      const response = await axios.post(
+        `http://localhost:8080/author/${authorId}/books`,
+        { name: bookName }
+      );
+      dispatch(addBookToAuthorFulfilled(response.data));
+    } catch (error) {
+      console.error('Error adding book:', error);
+    }
+  };
+};
+
 
 const authorsSlice = createSlice({
   name: 'authors',
@@ -60,13 +71,19 @@ const authorsSlice = createSlice({
       state.status = 'failed';
       state.error = action.payload;
     },
-    addBookToAuthorFulfilled: (state, action) => {
+    deleteAuthorByIdFulfilled: (state, action) => {
+      state.authors = state.authors.filter((author) => author.id !== action.payload);
+    },
+    updateAuthorByIdFulfilled: (state, action) => {
+      console.log('Payload:', action.payload);
       state.authors = state.authors.map((author) =>
         author.id === action.payload.id ? action.payload : author
       );
     },
-    deleteAuthorByIdFulfilled: (state, action) => {
-      state.authors = state.authors.filter((author) => author.id !== action.payload);
+    addBookToAuthorFulfilled: (state, action) => {
+      state.authors = state.authors.map((author) =>
+        author.id === action.payload.id ? action.payload : author
+      );
     },
   },
 });
@@ -77,6 +94,7 @@ export const {
   fetchAuthorsRejected,
   addBookToAuthorFulfilled,
   deleteAuthorByIdFulfilled,
+  updateAuthorByIdFulfilled
 } = authorsSlice.actions;
 
 export default authorsSlice.reducer;

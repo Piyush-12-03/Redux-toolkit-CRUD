@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import MainComponent from './MainComponent';
 import { useDispatch } from 'react-redux';
 import { useParams, useNavigate } from 'react-router-dom';
-import { addBookToAuthor} from '../slices/authorsSlice';
+import { addBookToAuthor} from '../slices/booksSlice';
 
 
 const AddBook = () => {
@@ -13,19 +13,17 @@ const AddBook = () => {
 
   const handleAddBook = () => {
     if (bookName) {
-        console.log('BookName.....',bookName);
       dispatch(addBookToAuthor({ bookName, authorId }))
         .then(() => {
-          console.log('Book added successfully'+ bookName);
-        navigate('/allAuthors');    
-    })
+          console.log('Book added successfully:', bookName);
+          navigate("/allAuthors");
+        })
         .catch((error) => {
           console.error('Error adding book:', error);
         });
       setBookName('');
     }
   };
-
 
   return (
     <div>
