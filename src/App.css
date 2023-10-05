@@ -6,6 +6,7 @@
   justify-content: space-between;
   align-items: center;
   padding: 10px 20px;
+  box-shadow: #ffffff 1px 15px;
 }
 
 /* Styling for the logo text */
@@ -49,6 +50,7 @@
   margin-bottom: 10px;
   font-family: Josefin Slab;
   text-align: center;
+  margin-top: 20px;
 }
 
 label {

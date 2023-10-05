@@ -7,6 +7,18 @@ const initialState = {
   error: null, 
 };
 
+export const fetchBooks = () => {
+    return async (dispatch) => {
+        dispatch(fetchBooksPending());
+      try { 
+        const response = await axios.get('http://localhost:8080/author/books');
+        dispatch(fetchBooksFulfilled(response.data));
+      } catch (error) {
+        dispatch(fetchBooksRejected(error.message));
+      }
+    };
+  };
+
 export const addBookToAuthor = ({ bookName, authorId }) => {
     return async (dispatch) => {
       try {
@@ -23,7 +35,7 @@ export const addBookToAuthor = ({ bookName, authorId }) => {
   
   
   const booksSlice = createSlice({
-    name: 'authors',
+    name: 'books',
     initialState,
     reducers: {
       fetchBooksPending: (state) => {
@@ -31,7 +43,7 @@ export const addBookToAuthor = ({ bookName, authorId }) => {
       },
       fetchBooksFulfilled: (state, action) => {
         state.status = 'succeeded';
-        state.authors = action.payload;
+        state.books = action.payload;
       },
       fetchBooksRejected: (state, action) => {
         state.status = 'failed';
@@ -47,6 +59,9 @@ export const addBookToAuthor = ({ bookName, authorId }) => {
   
   export const {
     addBookToAuthorFulfilled,
+    fetchBooksPending,
+    fetchBooksFulfilled,
+    fetchBooksRejected,
   } = booksSlice.actions;
   
   export default booksSlice.reducer;

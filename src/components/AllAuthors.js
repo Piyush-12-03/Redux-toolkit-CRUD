@@ -15,10 +15,14 @@ const AllAuthor = () => {
   const error = useSelector((state) => state.authors.error);
 
   useEffect(() => {
+    console.log("Status:", status); // Log status
     if (status === "idle") {
+      console.log("Fetching authors...");
       dispatch(fetchAuthors());
     }
   });
+  console.log("Authors:", authors);
+
 
   const handleDeleteAuthor = (authorId) => {
     dispatch(deleteAuthorById(authorId));

@@ -13,6 +13,7 @@ const MainComponent=() => {
                 <div className="nav-buttons">
                     <Link to="/allAuthors" className="btn bd-primary">All Authors</Link>
                     <Link to="/addAuthor" className="btn bd-primary">Add Author</Link>
+                    <Link to="/allBooks" className="btn bd-primary">All Books</Link>
                 </div>
             </nav></>
     );
