@@ -7,6 +7,7 @@ import AllAuthor from './components/AllAuthors';
 import AddBook from './components/AddBook';
 import UpdateAuthor from './components/UpdateAuthor';
 import AllBooks from './components/AllBooks';
+import UpdateBook from './components/UpdateBook';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
               <Route path="updateAuthor/:authorId" element={<UpdateAuthor/>}></Route>
               <Route path="addBook/:authorId" element={<AddBook/>}></Route>
               <Route path="allBooks" element={<AllBooks/>}></Route>
+              <Route path="updateBook/:bookId" element={<UpdateBook/>}></Route>
             </Routes>
           </BrowserRouter>
         </div>

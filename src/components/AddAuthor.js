@@ -32,8 +32,8 @@ const AddAuthor = () => {
   return (
     <div>
       <MainComponent />
-      <div className="container">
-        <h1 className="allAuthor">Author Form</h1>
+      <div className="addAForm">
+        <h1 className="name">Author Form</h1>
         <div>
           <label htmlFor="name">Author Name:</label>
           <input
@@ -41,6 +41,7 @@ const AddAuthor = () => {
             id="name"
             value={name}
             onChange={(e) => setName(e.target.value)}
+            placeholder='Author`s Name'
           />
         </div>
         <div>

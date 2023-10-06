@@ -1,4 +1,4 @@
-import React, { useEffect} from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import {
   deleteAuthorById,
@@ -10,19 +10,18 @@ import { Link } from "react-router-dom";
 
 const AllAuthor = () => {
   const dispatch = useDispatch();
-  const authors = useSelector((state) => state.authors.authors);
+  const {authors} = useSelector((state) => state.authors);
   const status = useSelector((state) => state.authors.status);
   const error = useSelector((state) => state.authors.error);
 
+  console.log("Authors:", authors);
   useEffect(() => {
-    console.log("Status:", status); // Log status
     if (status === "idle") {
       console.log("Fetching authors...");
       dispatch(fetchAuthors());
+      console.log(dispatch);
     }
   });
-  console.log("Authors:", authors);
-
 
   const handleDeleteAuthor = (authorId) => {
     dispatch(deleteAuthorById(authorId));
@@ -64,11 +63,13 @@ const AllAuthor = () => {
                 <td>{author.authorName}</td>
                 <td>
                   <ul>
-                    {author.bookList.map((book) => (
-                      <li key={book.bookId}>{book.bookName}</li>
-                    ))}
+                    {author &&
+                      author.bookList.map((book) => (
+                        <li key={book.bookId}>{book.bookName}</li>
+                      ))}
                   </ul>
                 </td>
+
                 <td>
                   {" "}
                   <Link to={`/addBook/${author.id}`} className="btn-bd-primary">
@@ -91,7 +92,9 @@ const AllAuthor = () => {
                       authorName: author.authorName,
                     }}
                     className="btn-bd-primary"
-                    onClick={() => handleUpdateAuthor(author.id, author.authorName)}
+                    onClick={() =>
+                      handleUpdateAuthor(author.id, author.authorName)
+                    }
                   >
                     Update
                   </Link>

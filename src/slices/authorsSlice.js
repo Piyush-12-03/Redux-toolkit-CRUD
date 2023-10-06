@@ -41,19 +41,21 @@ export const updateAuthorById = (authorId, updatedAuthorName) => {
   };
 };
 
-export const addBookToAuthor = ({ bookName, authorId }) => {
-  return async (dispatch) => {
-    try {
-      const response = await axios.post(
-        `http://localhost:8080/author/${authorId}/books`,
-        { name: bookName }
-      );
-      dispatch(addBookToAuthorFulfilled(response.data));
-    } catch (error) {
-      console.error('Error adding book:', error);
-    }
-  };
-};
+// export const addBookToAuthor = ({ bookName, authorId }) => {
+//   return async (dispatch) => {
+//     try {
+//       const response = await axios.post(
+//         `http://localhost:8080/author/${authorId}/books`,
+//         { "bookName": bookName }
+//       );
+//       dispatch(addBookToAuthorFulfilled(response.data));
+//       return response.data;
+//     } catch (error) {
+//       console.error('Error adding book:', error);
+//       throw error;
+//     }
+//   };
+// };
 
 
 const authorsSlice = createSlice({
@@ -80,11 +82,13 @@ const authorsSlice = createSlice({
         author.id === action.payload.id ? action.payload : author
       );
     },
-    addBookToAuthorFulfilled: (state, action) => {
-      state.authors = state.authors.map((author) =>
-        author.id === action.payload.id ? action.payload : author
-      );
-    },
+    // addBookToAuthorFulfilled: (state, action) => {
+    //   console.log("THis is my book fulfill",action.payload);
+    //   state.authors = state.authors.map((author) =>
+    //   author.id === action.payload.id ? action.payload : author
+    //   ,console.log(state.authors)
+    //   );
+    // },
   },
 });
 
@@ -92,7 +96,7 @@ export const {
   fetchAuthorsPending,
   fetchAuthorsFulfilled,
   fetchAuthorsRejected,
-  addBookToAuthorFulfilled,
+  // addBookToAuthorFulfilled,
   deleteAuthorByIdFulfilled,
   updateAuthorByIdFulfilled
 } = authorsSlice.actions;

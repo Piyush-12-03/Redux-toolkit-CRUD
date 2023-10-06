@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { fetchBooks } from "../slices/booksSlice";
+import { deleteBookById, fetchBooks, updateBookById } from "../slices/booksSlice";
 import MainComponent from "./MainComponent";
+import { Link } from "react-router-dom";
 
 const AllBooks = () => {
   const dispatch = useDispatch();
@@ -9,12 +10,22 @@ const AllBooks = () => {
   const status = useSelector((state) => state.books.status);
   const error = useSelector((state) => state.books.error);
 
-  useEffect(() => {
+
+console.log("Books->",books);
+  
+useEffect(() => {
     if (status === "idle") {
-      console.log("Fetching books...");
       dispatch(fetchBooks());
     }
-  }, [status, dispatch]);
+  });
+
+  const handleDelete = (bookId) => () => {
+    dispatch(deleteBookById(bookId));
+  };
+
+  const handleUpdateAuthor=(booId, bookName)=>{
+    dispatch(updateBookById(booId, bookName));
+  }
 
   return (
     <div>
@@ -33,22 +44,35 @@ const AllBooks = () => {
             <tr>
               <th>ID</th>
               <th>Book Name</th>
-              <th>Authors</th>
               <th>Delete</th>
+              <th>Update</th>
             </tr>
           </thead>
           <tbody>
-            {books.map((book) => (
-              <tr key={book.id}>
-                <td>{book.bookId}</td>
-                <td>{book.bookName}</td>
-                <td>{}</td>
-                <td>
-                  <button className="btn-delete-update">Delete</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
+      {books.map((book) => (
+        <tr key={book.bookId}>
+          <td>{book.bookId}</td>
+          <td>{book.bookName}</td>
+          <td>
+            <button className="btn-delete-update" onClick={handleDelete(book.bookId)}>
+              Delete
+            </button>
+          </td>
+          <td>
+          <Link to={`/updateBook/${book.bookId}`}
+                    state={{
+                      bookId: book.bookId,
+                      bookName: book.bookName,
+                    }}
+                    className="btn-bd-primary"
+                    onClick={() => handleUpdateAuthor(book.bookId, book.bookName)}
+                  >
+                    Update
+                  </Link>
+          </td>
+        </tr>
+      ))}
+    </tbody>
         </table>
       )}
       {status === "failed" && <div>Error: {error}</div>}

@@ -1,5 +1,24 @@
 
 /* Styling for the Navbar */
+.addAForm {
+  background-color: #72af94;
+  color: white;
+  width: 500px; /* Adjust the width as needed */
+  height: 220px; /* Adjust the height as needed */
+  text-align: center;
+  padding: 20px;
+  display: flex;
+  flex-direction: column; /* To center vertically */
+  justify-content: center; /* Center horizontally */
+  align-items: center; /* Center vertically */
+  margin: 0 auto; /* To center horizontally within a parent container */
+  margin-top: 120px;
+  border-radius: 20px;
+}
+.name{
+  color: white;
+}
+
 .navbar {
   background-color: #8accae; /* Background color for the navbar */
   display: flex;
@@ -27,12 +46,14 @@
 }
 
 .btn-delete-update{
-  background-color: #72af94;
+  background-color: #72cea3;
   border-radius: 5rem;
+  margin-top: 10px;
+  color: black;
 }
 
 .btn-delete-update:hover{
-  background-color: #8accae;
+  background-color: #fff;
 }
 /* //addAuthor Style */
 .container {
@@ -50,7 +71,7 @@
   margin-bottom: 10px;
   font-family: Josefin Slab;
   text-align: center;
-  margin-top: 20px;
+  margin-top: 30px;
 }
 
 label {
@@ -89,4 +110,20 @@ button:hover {
   padding: 5px 10px;
   padding-top: 1px;
   border-radius: 20px;
+}
+.Book{
+  margin-top: 20px;
+  background-color: #72af94;
+  color: white;
+  width: 40%;
+  text-align: center;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease-in-out;
+  font-size: 18px;
+  font-family: Josefin Slab;
+  margin-bottom: 20px;
+
 }
